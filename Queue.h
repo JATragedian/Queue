@@ -1,6 +1,6 @@
 class Queue {
 public:
-	void push();
+	void push(); /**/
 	void pop();
 	int findMin();
 	int findMax();
