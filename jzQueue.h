@@ -4,7 +4,7 @@
 template <class Qt> class Queue {
 public:
 	Queue(); // +
-	void push(Qt x); // +
+	void push(Qt x); // Need to redo...;
 	void pop();
 	void show(); // +
 	void show(size_t n); // +
@@ -14,8 +14,7 @@ public:
 	size_t size(); // +
 	int szof();
 	bool empty();
-	int compare(const void *first, const void *second); // Not working;
-	void sort(); // Not working, either;
+	void sort(size_t from, size_t to); // +
 
 private:
 	Qt *queue;
@@ -77,6 +76,7 @@ template <class Qt>
 void Queue<Qt>::show()
 {
 	if (num > 0) {
+		std::cout << std::endl;
 		for (size_t i = 0; i < num; i++) {
 			std::cout << "Element " << i << ": " << queue[i] << std::endl;
 		}
@@ -106,19 +106,29 @@ void Queue<Qt>::show(Qt *from, Qt *to)
 }
 
 template <class Qt>
-int Queue<Qt>::compare(const void *first, const void *second)
+void Queue<Qt>::sort(size_t from, size_t to)
 {
-	return *((Qt*)first) - *((Qt*)second);
-}
+	if (num > 1) {
+		size_t left = from, right = to;
+		Qt middle = queue[(left + right) / 2];
 
-template <class Qt>
-void Queue<Qt>::sort()
-{
-	if (num > 2) {
-		qsort(queue, num, sizeof(Qt), compare);
+		while (left <= right)
+		{
+			while (queue[left] < middle)
+				left++;
+			while (queue[right] > middle)
+				right--;
+			if (left <= right)
+				std::swap(queue[left++], queue[right--]);
+		}
+
+		if (from < right)
+			sort(from, right);
+		if (to > left)
+			sort(left, to);
 	}
 
-	else if (num > 1) {
+	else if (num = 1) {
 		std::cout << "\nThere is only one element in the queue!\n";
 	}
 
