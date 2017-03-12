@@ -4,7 +4,7 @@
 template <class Qt> class Queue {
 public:
 	Queue(); // +
-	void push(Qt x); // Need to redo...;
+	void push(Qt x); // +
 	void pop();
 	void show(); // +
 	void show(size_t n); // +
@@ -12,7 +12,6 @@ public:
 	Qt findMin(); // +
 	Qt findMax();
 	size_t size(); // +
-	int szof();
 	bool empty();
 	void sort(size_t from, size_t to); // +
 
@@ -61,15 +60,6 @@ template <class Qt>
 size_t Queue<Qt>::size()
 {
 	return num;
-}
-
-template <class Qt>
-int Queue<Qt>::szof()
-{
-	unsigned long size;
-
-	size = sizeof(queue); // Doesn't showing the whole size!...
-	return size;
 }
 
 template <class Qt>
