@@ -24,5 +24,7 @@ void test1()
 	std::cout << std::endl << "Min value: " << firstQ.findMin() << std::endl;
 	std::cout << std::endl << "Number of elements: " << firstQ.size() << std::endl;
 	std::cout << std::endl << "Size of array: " << firstQ.szof() << std::endl; // Doesn't showing the whole size!...
+	/*firstQ.sort();
+	firstQ.show();*/
 }
 

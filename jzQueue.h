@@ -7,18 +7,19 @@ public:
 	void push(Qt x); // +
 	void pop();
 	void show(); // +
-	void show(int n); // +
-	void show(int *from, int *to);
+	void show(size_t n); // +
+	void show(Qt *from, Qt *to);
 	Qt findMin(); // +
 	Qt findMax();
-	int size(); // +
+	size_t size(); // +
 	int szof();
 	bool empty();
-	void qSort(); // QuickSort;
+	int compare(const void *first, const void *second); // Not working;
+	void sort(); // Not working, either;
 
 private:
 	Qt *queue;
-	int num;
+	size_t num;
 };
 
 ////////////////////////// Methods ///////////////////////////
@@ -58,7 +59,7 @@ Qt Queue<Qt>::findMin()
 }
 
 template <class Qt>
-int Queue<Qt>::size()
+size_t Queue<Qt>::size()
 {
 	return num;
 }
@@ -85,7 +86,7 @@ void Queue<Qt>::show()
 }
 
 template <class Qt>
-void Queue<Qt>::show(int n)
+void Queue<Qt>::show(size_t n)
 {
 	if (num > 0) {
 		if (n < num) {
@@ -99,9 +100,29 @@ void Queue<Qt>::show(int n)
 }
 
 template <class Qt>
-void Queue<Qt>::show(int *from, int *to)
+void Queue<Qt>::show(Qt *from, Qt *to)
 {
 	//...
+}
+
+template <class Qt>
+int Queue<Qt>::compare(const void *first, const void *second)
+{
+	return *((Qt*)first) - *((Qt*)second);
+}
+
+template <class Qt>
+void Queue<Qt>::sort()
+{
+	if (num > 2) {
+		qsort(queue, num, sizeof(Qt), compare);
+	}
+
+	else if (num > 1) {
+		std::cout << "\nThere is only one element in the queue!\n";
+	}
+
+	else std::cout << "\nQueue is empty!\n";
 }
 
 #endif
