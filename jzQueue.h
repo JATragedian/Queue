@@ -1,15 +1,10 @@
-
+#ifndef _JZQUEUE_H_
+#define _JZQUEUE_H_
 
 template <class Qt> class Queue {
 public:
-<<<<<<< HEAD
 	Queue(); // +
 	void push(Qt x); // +
-=======
-	Queue(); //Constructor;
-	//~Queue(); // Destructor;
-	void push(Qt x);
->>>>>>> 943eb15fbe1bd251786c9f1f94931124c718b237
 	void pop();
 	void show(); // +
 	void show(int n); // +
@@ -21,18 +16,12 @@ public:
 	bool empty();
 	void qSort(); // QuickSort;
 
-
 private:
 	Qt *queue;
 	int num;
 };
 
-<<<<<<< HEAD
 ////////////////////////// Methods ///////////////////////////
-=======
-
-
->>>>>>> 943eb15fbe1bd251786c9f1f94931124c718b237
 
 template <class Qt>
 Queue<Qt>::Queue()
@@ -58,17 +47,10 @@ Qt Queue<Qt>::findMin()
 			for (size_t i = 1; i < num; i++) {
 				if (x > queue[i]) x = queue[i];
 			}
-<<<<<<< HEAD
 
 			return x;
 		}
 
-=======
-			
-			return x;
-		} 
-		
->>>>>>> 943eb15fbe1bd251786c9f1f94931124c718b237
 		else return x;
 	}
 
@@ -81,7 +63,6 @@ int Queue<Qt>::size()
 	return num;
 }
 
-<<<<<<< HEAD
 template <class Qt>
 int Queue<Qt>::szof()
 {
@@ -124,6 +105,3 @@ void Queue<Qt>::show(int *from, int *to)
 }
 
 #endif
-=======
-
->>>>>>> 943eb15fbe1bd251786c9f1f94931124c718b237
