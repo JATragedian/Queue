@@ -5,8 +5,8 @@ template <class Qt> class Queue {
 public:
 	Queue(); // +
 	void push(Qt x); // +
-	void pop(); // +
-	void pop(size_t n); // + 
+	Qt pop(); // +
+	void delLast(size_t n); // +
 	void show(); // +
 	void show(size_t n); // +
 	void show(size_t n, size_t to); // +
@@ -38,18 +38,27 @@ void Queue<Qt>::push(Qt x)
 }
 
 template <class Qt>
-void Queue<Qt>::pop()
+Qt Queue<Qt>::pop()
 {
 	if (num > 0) {
-		queue[num - 1] = NULL;
+		Qt elem = queue[0];
+
+		for (size_t i = 0; i < num - 1; i++) {
+			queue[i] = queue[i + 1];
+		}
+
 		num--;
+
+		return elem;
 	}
 
 	else std::cout << "\nThe queue is empty!\n";
+
+	return 0;
 }
 
 template <class Qt>
-void Queue<Qt>::pop(size_t n)
+void Queue<Qt>::delLast(size_t n)
 {
 	if (num >= n) {
 		for (size_t elm = n; elm > 0; elm--) {
@@ -59,54 +68,8 @@ void Queue<Qt>::pop(size_t n)
 	}
 
 	else {
-		std::cout << "\nNumber of elements, you wish to delete, should be less then number of all elements in the queue!\n";
+		std::cout << "\nNumber of elements, you wish to delete, should be less or equal to number of all elements in the queue!\n";
 	}
-}
-
-template <class Qt>
-Qt Queue<Qt>::findMin()
-{
-	if (num > 0) {
-		Qt x = queue[0];
-
-		if (num > 1) {
-			for (size_t i = 1; i < num; i++) {
-				if (x > queue[i]) x = queue[i];
-			}
-
-			return x;
-		}
-
-		else return x;
-	}
-
-	else return 0;
-}
-
-template <class Qt>
-Qt Queue<Qt>::findMax()
-{
-	if (num > 0) {
-		Qt x = queue[0];
-
-		if (num > 1) {
-			for (size_t i = 1; i < num; i++) {
-				if (x < queue[i]) x = queue[i];
-			}
-
-			return x;
-		}
-
-		else return x;
-	}
-
-	else return 0;
-}
-
-template <class Qt>
-size_t Queue<Qt>::size()
-{
-	return num;
 }
 
 template <class Qt>
@@ -158,6 +121,53 @@ void Queue<Qt>::show(size_t n, size_t to)
 }
 
 template <class Qt>
+Qt Queue<Qt>::findMin()
+{
+	if (num > 0) {
+		Qt x = queue[0];
+
+		if (num > 1) {
+			for (size_t i = 1; i < num; i++) {
+				if (x > queue[i]) x = queue[i];
+			}
+
+			return x;
+		}
+
+		else return x;
+	}
+
+	else return 0;
+}
+
+template <class Qt>
+Qt Queue<Qt>::findMax()
+{
+	if (num > 0) {
+		Qt x = queue[0];
+
+		if (num > 1) {
+			for (size_t i = 1; i < num; i++) {
+				if (x < queue[i]) x = queue[i];
+			}
+
+			return x;
+		}
+
+		else return x;
+	}
+
+	else return 0;
+}
+
+template <class Qt>
+size_t Queue<Qt>::size()
+{
+	return num;
+}
+
+
+template <class Qt>
 bool Queue<Qt>::empty()
 {
 	if (num)
@@ -171,23 +181,31 @@ template <class Qt>
 void Queue<Qt>::sort(size_t from, size_t to)
 {
 	if (num > 1) {
-		size_t left = from, right = to;
-		Qt middle = queue[(left + right) / 2];
+		if (from <= to) {
+			if (to < num) {
+				size_t left = from, right = to;
+				Qt middle = queue[(left + right) / 2];
 
-		while (left <= right)
-		{
-			while (queue[left] < middle)
-				left++;
-			while (queue[right] > middle)
-				right--;
-			if (left <= right)
-				std::swap(queue[left++], queue[right--]);
+				while (left <= right)
+				{
+					while (queue[left] < middle)
+						left++;
+					while (queue[right] > middle)
+						right--;
+					if (left <= right)
+						std::swap(queue[left++], queue[right--]);
+				}
+
+				if (from < right)
+					sort(from, right);
+				if (to > left)
+					sort(left, to);
+			}
+
+			else std::cout << "\nNumber of finite element should be lesser than number of all elements in the queue!\n";
 		}
 
-		if (from < right)
-			sort(from, right);
-		if (to > left)
-			sort(left, to);
+		else std::cout << "\nNumber of primary element should be equal or greather then the finite one!\n";
 	}
 
 	else if (num = 1) {

@@ -18,31 +18,34 @@ void test1()
 
 	std::cout << "\n  FIRST QUEUE:\n";
 
-	firstQ.push(25);
-	firstQ.push(30);
-	firstQ.push(6);
-	firstQ.push(5);
-	firstQ.push(84);
+	firstQ.push(4);
+	firstQ.push(34);
+	firstQ.push(456);
+	firstQ.push(42);
 	firstQ.push(7);
-	firstQ.push(124);
 	firstQ.show();
-	firstQ.show(2);
-	firstQ.show(23);
-	firstQ.show(1, 5);
-	std::cout << std::endl << "Min value: " << firstQ.findMin() << std::endl;
-	std::cout << std::endl << "Max value: " << firstQ.findMax() << std::endl;
-	std::cout << std::endl << "Number of elements: " << firstQ.size() << std::endl;
-	firstQ.sort(0, firstQ.size() - 1);
+	firstQ.pop();
 	firstQ.show();
-	firstQ.pop(6);
+	std::cout << "\nMin: " << firstQ.findMin();
+	std::cout << "\nMax: " << firstQ.findMax();
+	std::cout << "\nSize: " << firstQ.size() << '\n';
+	firstQ.sort(0, 3);
 	firstQ.show();
 
 	std::cout << "\n  SECOND QUEUE:\n";
 
-	secondQ.push('A');
+	secondQ.push('g');
+	secondQ.push('e');
+	secondQ.push('v');
+	secondQ.push('J');
+	secondQ.push('M');
 	secondQ.show();
 	secondQ.pop();
-	secondQ.push('N');
+	secondQ.show();
+	std::cout << "\nMin: " << secondQ.findMin();
+	std::cout << "\nMax: " << secondQ.findMax();
+	std::cout << "\nSize: " << secondQ.size() << '\n';
+	secondQ.sort(0, 3);
 	secondQ.show();
 }
 
